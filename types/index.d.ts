@@ -1194,4 +1194,4 @@ declare namespace Benchmark {
     }
 }
 
-export = Benchmark;
+export default Benchmark;
