@@ -1,6 +1,7 @@
 /*!
  * Benchmark.js
- * Copyright 2010-2016 Mathias Bynens
+ * Copyright Aras Abbasi
+ * Based on Benchmark.js, copyright Mathias Bynens
  * Based on JSLitmus.js, copyright Robert Kieffer
  * Modified by John-David Dalton
  * Available under MIT license

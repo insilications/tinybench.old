@@ -1,6 +1,6 @@
 {
   "name": "benchmark",
-  "version": "2.1.4",
+  "version": "1.0.0",
   "description": "A benchmarking library that supports high-resolution timers & returns statistically significant results.",
   "homepage": "https://benchmarkjs.com/",
   "license": "MIT",
@@ -12,9 +12,10 @@
     "performance",
     "speed"
   ],
-  "author": "Mathias Bynens <mathias@qiwi.be>",
+  "author": "Aras Abbas <aras.abbasi@gmail.com>",
   "types": "types/index.d.ts",
   "contributors": [
+    "Aras Abbasi <aras.abbasi@gmail.com>",
     "Mathias Bynens <mathias@qiwi.be>",
     "John-David Dalton <john.david.dalton@gmail.com>",
     "Kit Cambridge <github@kitcambridge.be>"
