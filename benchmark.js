@@ -705,7 +705,11 @@
         if (value != null) {
           // Add event listeners.
           if (onEventRE.test(key)) {
-            (key.indexOf(' ') === -1 ? [key] : key.split(' ')).forEach(function (key) {
+            var onEventKeys = key.indexOf(' ') === -1
+              ? [key]
+              : key.split(' ');
+
+            each(onEventKeys, function (key) {
               object.on(key.slice(2).toLowerCase(), value);
             });
           } else if (!has(object, key)) {
@@ -1124,7 +1128,13 @@
       }
 
       if (typeof type === 'string') {
-        type.split(' ').forEach(callback);
+        var types = type.indexOf(' ') === -1
+          ? [type]
+          : type.split(' ');
+
+          for (var i = 0, il = types.length; i < il; ++i) {
+            callback(types[i]);
+          }
         return this;
       }
 
@@ -1137,16 +1147,21 @@
     }
 
     function on(type, listener) {
-      var object = this,
-        events = object.events || (object.events = {});
+      var events = this.events || (this.events = {});
 
-      (type.indexOf(' ') === -1 ? [type] : type.split(' ')).forEach(function (type) {
-        (has(events, type)
-          ? events[type]
-          : (events[type] = [])
-        ).push(listener);
-      });
-      return object;
+      var types = type.indexOf(' ') === -1
+        ? [type]
+        : type.split(' ');
+
+      for (var i = 0, il = types.length; i < il; ++i) {
+        var type = types[i];
+        if (!events.hasOwnProperty(type)) {
+          events[type] = [];
+        }
+        events[type].push(listener);
+      }
+
+      return this;
     }
 
     function abort() {
@@ -1316,9 +1331,10 @@
       // If changed emit the `reset` event and if it isn't cancelled reset the benchmark.
       if (changes.length &&
         (bench.emit(event = Event('reset')), !event.cancelled)) {
-        changes.forEach(function (data) {
+        for (var i = 0, il = changes.length; i < il; ++i) {
+          var data = changes[i];
           data.destination[data.key] = data.value;
-        });
+        }
       }
       return bench;
     }
