@@ -1,8 +1,7 @@
 {
-  "name": "benchmark",
+  "name": "tinybench",
   "version": "1.0.0",
   "description": "A benchmarking library that supports high-resolution timers & returns statistically significant results.",
-  "homepage": "https://benchmarkjs.com/",
   "license": "MIT",
   "browser": "benchmark.js",
   "main": "index.js",
@@ -20,7 +19,7 @@
     "John-David Dalton <john.david.dalton@gmail.com>",
     "Kit Cambridge <github@kitcambridge.be>"
   ],
-  "repository": "bestiejs/benchmark.js",
+  "repository": "tinylibs/tinybench",
   "scripts": {
     "coveralls": "nyc report --reporter=lcov",
     "test": "npm run test:mocha",

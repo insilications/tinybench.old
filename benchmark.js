@@ -9,7 +9,7 @@
 ; (function () {
   'use strict';
 
-  var version = '2.1.4';
+  var version = '1.0.0';
 
   /** Used as a safe reference for `undefined` in pre ES5 environments. */
   var undefined;
