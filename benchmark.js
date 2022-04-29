@@ -53,7 +53,7 @@
   var contextProps = [
     'Array', 'Date', 'Function', 'Math', 'Object', 'RegExp', 'String',
     'clearTimeout', 'chrome', 'chromium', 'document', 'navigator',
-    'process', 'runtime', 'setTimeout'
+    'process', 'runtime', 'setTimeout', 'phantom'
   ];
 
   /** Used to avoid hz of Infinity. */
