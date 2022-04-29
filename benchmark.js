@@ -374,22 +374,22 @@
       String = context.String;
 
     /** Used for `Array` and `Object` method references. */
-    var arrayRef = [],
-      objectProto = Object.prototype;
+    var arrayRef = [];
 
     /** Native method shortcuts. */
     var abs = Math.abs,
       clearTimeout = context.clearTimeout,
       floor = Math.floor,
+      ceil = Math.ceil,
       max = Math.max,
       min = Math.min,
       pow = Math.pow,
+      round = Math.round,
       push = arrayRef.push,
       setTimeout = context.setTimeout,
       shift = arrayRef.shift,
       slice = arrayRef.slice,
       sqrt = Math.sqrt,
-      toString = objectProto.toString,
       unshift = arrayRef.unshift;
 
     /** Detect DOM document object. */
@@ -936,9 +936,7 @@
     }
 
     function join(object, separator1, separator2) {
-      var result = [],
-        length = (object = Object(object)).length,
-        arrayLike = length === length >>> 0;
+      var result = [];
 
       separator2 || (separator2 = ': ');
 
@@ -1739,7 +1737,7 @@
           // Compute the degrees of freedom.
           df = size - 1;
           // Compute the critical value.
-          critical = tTable[Math.round(df) || 1] || tTable.infinity;
+          critical = tTable[round(df) || 1] || tTable.infinity;
           // Compute the margin of error.
           moe = sem * critical;
           // Compute the relative margin of error.
@@ -1853,7 +1851,7 @@
           }
           // Calculate how many more iterations it will take to achieve the `minTime`.
           if (count <= clone.count) {
-            count += Math.ceil((minTime - clocked) / period);
+            count += ceil((minTime - clocked) / period);
           }
           clone.running = count != Infinity;
         }
