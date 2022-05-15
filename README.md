@@ -1,12 +1,5 @@
 # tinybench
 
-<div align="center">
-
-[![Build Status](https://github.com/tinylibs/tinybench/workflows/ci/badge.svg)](https://github.com/tinylibs/tinybench/actions)
-[![Coverage Status](https://coveralls.io/repos/github/tinylibs/tinybench/badge.svg?branch=master)](https://coveralls.io/github/tinylibs/tinybench?branch=master)
-
-</div>
-
 A [robust](https://mathiasbynens.be/notes/javascript-benchmarking "Bulletproof JavaScript benchmarks") benchmarking library based on benchmark.js
 
 ## Documentation
