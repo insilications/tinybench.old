@@ -124,6 +124,31 @@
 
   /*--------------------------------------------------------------------------*/
 
+  var isAsyncFunction;
+  try {
+    var asyncFunctionPrototype = new Function('return Object.getPrototypeOf(async function () { })')();
+    isAsyncFunction = function (fn) {
+      try {
+        return (
+          (
+            typeof fn === 'string' &&
+            asyncFunctionPrototype === Object.getPrototypeOf(new Function(fn))
+          ) ||
+          (
+            typeof fn === 'function' &&
+            Object.getPrototypeOf(fn) === asyncFunctionPrototype
+          )
+        );
+      } catch (e) {
+        return false;
+      }
+    };
+  } catch (e) {
+    isAsyncFunction = function () {
+      return false;
+    }
+  }
+
   /**
    * A specialized version of lodashs `cloneDeep` which only clones arrays and plain
    * objects assigning all other values by reference.
@@ -980,9 +1005,39 @@
     }
 
     function add(name, fn, options) {
-      var suite = this,
-        bench = new Benchmark(name, fn, options),
-        event = Event({ 'type': 'add', 'target': bench });
+      var suite = this;
+      var bench;
+      if (isAsyncFunction(fn)) {
+        if (typeof fn === 'function') {
+          bench = new Benchmark(name,
+            {
+              defer: true,
+              fn: function (deferred) {
+                fn()
+                  .catch(function (error) {
+                    deferred.reject(error);
+                  })
+                  .then(function () {
+                    deferred.resolve();
+                  });
+              }
+            },
+            options);
+        } else {
+          bench = new Benchmark(name,
+            {
+              defer: true,
+              fn: '(' + fn + ')()' +
+                '.catch(function (error) { deferred.reject(error); })' +
+                '.then(function () { deferred.resolve(); })'
+            },
+            options)
+        }
+      } else {
+        bench = new Benchmark(name, fn, options);
+      }
+
+      var event = Event({ 'type': 'add', 'target': bench });
 
       if (suite.emit(event), !event.cancelled) {
         suite.push(bench);
