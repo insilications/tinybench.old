@@ -1,6 +1,6 @@
 {
   "name": "tinybench",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A benchmarking library that supports high-resolution timers & returns statistically significant results.",
   "license": "MIT",
   "browser": "benchmark.js",
