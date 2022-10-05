@@ -49,6 +49,7 @@
     }
   },
   "dependencies": {
+    "@types/benchmark": "^2.1.2",
     "microtime": "^3.1.1"
   }
 }
